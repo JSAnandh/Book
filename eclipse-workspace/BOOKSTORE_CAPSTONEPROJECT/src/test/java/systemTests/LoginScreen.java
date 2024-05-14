@@ -44,5 +44,21 @@ public class LoginScreen extends BaseClass {
 
 		driver.findElement(By.xpath("//button[normalize-space()='Login']")).click();
 	}
+	
+	//User session secure testing by navigating browser forward / backward
+	@Test(priority = 4)
+	public void Usersessionsecure() {
+
+		String cururl = null;
+		String actualurl = "https://automationteststore.com/index.php?rt=account/login";
+		
+			 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+			 driver.navigate().back();
+			 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+			 driver.navigate().forward();
+			 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+			 cururl=driver.getCurrentUrl(); 
+			 assertEquals(cururl,actualurl ); 
+		}
 
 }
